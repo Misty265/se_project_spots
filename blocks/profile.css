@@ -18,24 +18,36 @@
 
 .profile__name {
   margin: 0 0 12px;
-  font-family: Poppins;
+  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 500;
   line-height: 32px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
 }
 
 .profile__description {
   margin: 0;
-  font-family: Poppins;
+  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
 }
 
 .profile__edit_btn {
@@ -45,7 +57,7 @@
   background-color: #fcf5e5;
   height: 16px;
   width: 87px;
-  font-family: Poppins;
+  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
@@ -62,11 +74,59 @@
   border-radius: 8px;
   height: 52px;
   margin-top: auto;
-  font-family: Poppins;
+  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+
+@media screen and (max-width: 627px) {
+  .profile {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 16px;
+  }
+  .profile__name {
+    font-family: Poppins-Medium;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin: 12px 0 6px;
+  }
+  .profile__column {
+    margin: 0 0 20px;
+  }
+  .profile__description {
+    font-family: Poppins-Medium;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-bottom: 32px;
+  }
+  .profile__image {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+  }
+  .profile__edit_btn {
+    width: 107.34px;
+    height: 16px;
+    gap: 8px;
+    border-radius: 90px 0px 0px 0px;
+    opacity: 0.7px;
+    margin: auto;
+  }
+  .profile__add_btn {
+    width: 100%;
+  }
 }
