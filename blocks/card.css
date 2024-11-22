@@ -16,7 +16,7 @@
 
 .card__title {
   margin: 12px 0 0;
-  font-family: Poppins-Medium, Arial, Helvetica, sans-serif;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
@@ -32,6 +32,14 @@
   height: 20px;
   width: 23px;
   border: none;
-  background-color: #fcf5e5;
+  background-color: transparent;
   margin: 12px 0 0;
+  background-image: url(../images/like-btn.svg);
+}
+
+@media screen and (max-width: 627px) {
+  .card__title {
+    font-size: 16px;
+    line-height: 16px;
+  }
 }
