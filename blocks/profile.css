@@ -58,7 +58,13 @@
   height: 16px;
 }
 
+.profile__edit-btn:hover {
+  color: #212121;
+  cursor: url("../images/pointer.svg"), default;
+}
+
 .profile__edit-btn {
+  color: #212121;
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -82,6 +88,12 @@
   content: url(../images/plus-sign.svg) "";
   width: 12px;
   height: 12px;
+}
+
+.profile__add-btn:hover {
+  background-color: rgba(33, 33, 33, 0.8);
+  transition-timing-function: 1s ease-in 1s;
+  cursor: url("../images/pointer.svg"), default;
 }
 
 .profile__add-btn {
@@ -138,6 +150,6 @@
     margin: auto;
   }
   .profile__add-btn {
-    width: 100%;
+    width: 288px;
   }
 }

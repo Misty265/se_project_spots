@@ -1,10 +1,12 @@
 .cards {
   border-bottom: 1px solid rgba(33, 33, 33, 0.4);
   padding-bottom: 40px;
+  margin: auto;
 }
 
 .cards__list {
   list-style-type: none;
+  justify-content: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, 413px);
   gap: 40px 20px;
@@ -14,6 +16,7 @@
 
 @media screen and (max-width: 627px) {
   .cards__list {
-    row-gap: 20px;
+    column-gap: 20px;
+    margin-bottom: 60px;
   }
 }
