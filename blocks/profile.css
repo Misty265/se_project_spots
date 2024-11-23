@@ -36,7 +36,7 @@
 
 .profile__description {
   margin: 0;
-  color: #212121;
+  color: rgba(33, 33, 33, 0.7);
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -53,13 +53,15 @@
 }
 
 .profile__edit-btn::before {
-  background: url(../images/pencil.svg);
   content: url(../images/pencil.svg) "";
+  width: 16px;
+  height: 16px;
 }
 
 .profile__edit-btn {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+  justify-content: center;
   text-wrap: nowrap;
   margin-top: auto;
   border: none;
@@ -77,13 +79,15 @@
 }
 
 .profile__add-btn::before {
-  background: url(../images/plus-sign.svg) 12px 12px no-repeat center;
   content: url(../images/plus-sign.svg) "";
+  width: 12px;
+  height: 12px;
 }
 
 .profile__add-btn {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 8px;
   align-items: center;
   border: none;
   color: #fcf5e5;
@@ -112,16 +116,15 @@
   .profile__name {
     font-size: 20px;
     line-height: 20px;
-    text-align: center;
     margin: 12px 0 6px;
   }
   .profile__column {
     margin: 0 0 20px;
   }
   .profile__description {
+    text-align: center;
     font-size: 16px;
     line-height: 16px;
-    text-align: center;
     margin-bottom: 32px;
   }
   .profile__image {
@@ -132,7 +135,6 @@
   .profile__edit-btn {
     width: 107px;
     height: 16px;
-    gap: 8px;
     margin: auto;
   }
   .profile__add-btn {
