@@ -18,6 +18,7 @@
 
 .profile__name {
   margin: 0 0 12px;
+  color: #212121;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-size: 32px;
   font-weight: 500;
@@ -35,6 +36,7 @@
 
 .profile__description {
   margin: 0;
+  color: #212121;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -51,8 +53,8 @@
 }
 
 .profile__edit-btn::before {
-  background-image: url(../images/pencil.svg) 16px 16px no-repeat;
-  content: url(../images/pencil.svg) " Edit Profile";
+  background: url(../images/pencil.svg);
+  content: url(../images/pencil.svg) "";
 }
 
 .profile__edit-btn {
@@ -61,8 +63,8 @@
   text-wrap: nowrap;
   margin-top: auto;
   border: none;
-
   background-color: transparent;
+  color: #212121;
   height: 16px;
   width: 107px;
   font-family: Poppins, Arial, Helvetica, sans-serif;
@@ -75,11 +77,15 @@
 }
 
 .profile__add-btn::before {
-  background-image: url(../images/plus-sign.svg) 12px 12px no-repeat;
-  content: url(../images/plus-sign.svg) " New Post";
+  background: url(../images/plus-sign.svg) 12px 12px no-repeat center;
+  content: url(../images/plus-sign.svg) "";
 }
 
 .profile__add-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
   color: #fcf5e5;
   margin-left: auto;
   width: 149px;
@@ -127,8 +133,6 @@
     width: 107px;
     height: 16px;
     gap: 8px;
-    border-radius: 90px 0px 0px 0px;
-    opacity: 0.7px;
     margin: auto;
   }
   .profile__add-btn {
