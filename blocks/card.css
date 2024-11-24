@@ -1,5 +1,4 @@
 .card {
-  align-content: center;
   max-width: 413px;
 }
 
@@ -32,7 +31,7 @@
 
 .card__btn:hover {
   background-image: url("../images/like-btn-hover.svg");
-  transition-timing-function: 1s ease-in 1s;
+  transition: 1s ease-in 0.3s;
   cursor: url("../images/pointer.svg"), default;
 }
 
