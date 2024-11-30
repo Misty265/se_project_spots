@@ -62,5 +62,6 @@
   }
   .card__content {
     max-width: 288px;
+    margin-bottom: 20px;
   }
 }
