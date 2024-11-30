@@ -30,9 +30,9 @@
 }
 
 .card__btn:hover {
-  background-image: url("../images/like-btn-hover.svg");
+  opacity: 1;
   transition: 1s ease-in 0.3s;
-  cursor: url("../images/pointer.svg"), default;
+  cursor: pointer;
 }
 
 .card__btn {
@@ -41,6 +41,7 @@
   border: none;
   background-color: transparent;
   margin: 12px 0 0;
+  opacity: 0.4;
   background-image: url(../images/like-btn.svg);
 }
 
