@@ -31,7 +31,7 @@
 
 .card__btn:hover {
   opacity: 1;
-  transition: 1s ease-in 0.3s;
+  transition: 0.5s ease-in 0.3s;
   cursor: pointer;
 }
 
@@ -42,7 +42,7 @@
   background-color: transparent;
   margin: 12px 0 0;
   opacity: 0.4;
-  background-image: url(../images/like-btn.svg);
+  background-image: url(../images/like-btn-hover.svg);
 }
 
 @media screen and (max-width: 627px) {
