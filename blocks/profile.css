@@ -128,7 +128,10 @@
 @media screen and (max-width: 627px) {
   .profile {
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    align-content: center;
+    justify-content: center;
     padding: 20px 16px;
   }
   .profile__name {
@@ -139,8 +142,6 @@
     text-align: center;
   }
   .profile__column {
-    display: flex;
-    justify-content: center;
     margin: 0 0 20px;
     flex-wrap: nowrap;
   }
