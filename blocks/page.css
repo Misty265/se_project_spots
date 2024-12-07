@@ -1,6 +1,7 @@
 .page {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #fcf5e5;
   min-height: 100vh;
   font-family: Poppins, Arial, Helvetica, sans-serif;
@@ -11,4 +12,8 @@
 .page__section {
   margin: auto;
   max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
