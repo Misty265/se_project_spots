@@ -12,7 +12,5 @@
 .page__section {
   margin: auto;
   max-width: 1280px;
-  justify-content: center;
   align-content: center;
-  flex-wrap: wrap;
 }
