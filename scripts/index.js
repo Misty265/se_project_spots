@@ -24,3 +24,18 @@ const initialCards = [
     link: "https://unsplash.com/photos/a-night-sky-with-stars-and-a-silhouette-of-a-person-HofZ13d2H94",
   },
 ];
+
+const profileEditButton = document.querySelector(".profile__edit-btn");
+const profileEditModal = document.querySelector("#edit-modal");
+const modalCloseButton = profileEditModal.querySelector(".modal__close-btn");
+
+function openModal() {
+  profileEditModal.classList.add("modal__opened");
+}
+
+function closeModal() {
+  profileEditModal.classList.remove("modal__opened");
+}
+
+profileEditButton.addEventListener("click", openModal);
+modalCloseButton.addEventListener("click", closeModal);
