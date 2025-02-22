@@ -1,29 +1,31 @@
 const initialCards = [
   {
     name: "Winter Whiteout",
-    link: "https://unsplash.com/photos/a-black-and-white-photo-of-a-snowy-park-hqKEIg8SdLY",
+    link: "../images/winter-whiteout.avif",
   },
   {
     name: "Flower in the stars",
-    link: "https://unsplash.com/photos/the-night-sky-is-filled-with-stars-and-a-yellow-flower-KEINy-0eDuk",
+    link: "../images/flower-in-the-stars.avif",
   },
   {
     name: "Algea on the rocks",
-    link: "https://unsplash.com/photos/a-rocky-beach-with-green-algae-growing-in-the-water-QRVY1g2URDA",
+    link: "../images/algea.avif",
   },
   {
     name: "Waterfall in the mountains",
-    link: "https://unsplash.com/photos/a-large-waterfall-is-in-the-middle-of-a-mountain-AhM0yBuW1_I",
+    link: "../images/waterfall.avif",
   },
   {
     name: "Misty days",
-    link: "https://unsplash.com/photos/a-village-in-the-mountains-covered-in-snow-k-uOL1vBUxM",
+    link: "../images/misty-days.avif",
   },
   {
     name: "A sky full of stars",
-    link: "https://unsplash.com/photos/a-night-sky-with-stars-and-a-silhouette-of-a-person-HofZ13d2H94",
+    link: "../images/a-sky-full-of-stars.avif",
   },
 ];
+
+const cardsList = document.querySelector(".cards__list");
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
@@ -36,6 +38,22 @@ const editModalNameInput = editFormELement.querySelector("#profile-name-input");
 const editModalDescriptionInput = profileEditModal.querySelector(
   "#profile-description-input"
 );
+
+const cardTemplate = document.querySelector("#card");
+
+function getCardElement(data) {
+  console.log(data);
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardImage.src = data.link;
+  cardTitle.textContent = data.name;
+
+  return cardElement;
+}
 
 function openModal() {
   editModalNameInput.value = profileName.textContent;
@@ -57,3 +75,8 @@ function handleProfileFormSubmit(evt) {
 profileEditButton.addEventListener("click", openModal);
 modalCloseButton.addEventListener("click", closeModal);
 editFormELement.addEventListener("submit", handleProfileFormSubmit);
+
+for (let i = 0; i < initialCards.length; i++) {
+  const cardElement = getCardElement(initialCards[i]);
+  cardsList.append(cardElement);
+}
