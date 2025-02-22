@@ -1,11 +1,11 @@
 const initialCards = [
   {
-    name: "Winter Whiteout",
-    link: "../images/winter-whiteout.jpg",
+    name: "Waterfall off mountain",
+    link: "../images/waterfall2.jpg",
   },
   {
-    name: "Flower in the stars",
-    link: "../images/flower-in-the-stars.jpg",
+    name: "City lights",
+    link: "../images/city.jpg",
   },
   {
     name: "Algea on the rocks",
@@ -17,11 +17,11 @@ const initialCards = [
   },
   {
     name: "Misty days",
-    link: "../images/misty-days.jpg",
+    link: "../images/mist.jpg",
   },
   {
     name: "A sky full of stars",
-    link: "../images/a-sky-full-of-stars.jpg",
+    link: "../images/sunset.jpg",
   },
 ];
 
