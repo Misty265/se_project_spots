@@ -20,7 +20,7 @@ const initialCards = [
     link: "./images/mist.jpg",
   },
   {
-    name: "A sky full of stars",
+    name: "Sunset over snowy beach",
     link: "./images/sunset.jpg",
   },
 ];
@@ -50,6 +50,7 @@ function getCardElement(data) {
   const cardTitle = cardElement.querySelector(".card__title");
 
   cardImage.src = data.link;
+  cardImage.alt = data.name;
   cardTitle.textContent = data.name;
 
   return cardElement;
