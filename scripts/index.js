@@ -1,27 +1,27 @@
 const initialCards = [
   {
     name: "Waterfall off mountain",
-    link: "../images/waterfall2.jpg",
+    link: "./images/waterfall2.jpg",
   },
   {
     name: "City lights",
-    link: "../images/city.jpg",
+    link: "./images/city.jpg",
   },
   {
     name: "Algea on the rocks",
-    link: "../images/algea.jpg",
+    link: "./images/algea.jpg",
   },
   {
     name: "Waterfall in the mountains",
-    link: "../images/waterfall.jpg",
+    link: "./images/waterfall.jpg",
   },
   {
     name: "Misty days",
-    link: "../images/mist.jpg",
+    link: "./images/mist.jpg",
   },
   {
     name: "A sky full of stars",
-    link: "../images/sunset.jpg",
+    link: "./images/sunset.jpg",
   },
 ];
 
