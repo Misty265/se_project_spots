@@ -73,7 +73,33 @@
           </form>
         </div>
       </div>
-      <div id=""></div>
+      <div id="card-modal" class="modal modal_opened">
+        <div class="modal__container">
+          <button type="button" class="modal__close-btn"></button>
+          <h2 class="modal__title">New Post</h2>
+          <form name="new-post" class="modal__form">
+            <label for="image-input" class="modal__label"
+              >Image link
+              <input
+                placeholder="Pasta a link to the picture"
+                id="card-image-input"
+                type="text"
+                class="modal__input"
+              />
+            </label>
+            <label for="image-description-input" class="modal__label">
+              Caption
+              <input
+                placeholder="Type your caption"
+                id="image-caption-input"
+                type="text"
+                class="modal__input"
+              />
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
     <script defer src="./scripts/index.js"></script>
   </body>
