@@ -46,11 +46,11 @@
         </section>
       </main>
       <footer class="footer"><p class="footer__text">2024 © Spots</p></footer>
-      <div id="edit-modal" class="modal">
+      <div id="profile-edit-modal" class="modal">
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">Edit profile</h2>
-          <form name="edit-profile" class="modal__form">
+          <form name="edit-profile" id="edit-profile" class="modal__form">
             <label for="profile-name-input" class="modal__label">
               Name
               <input
@@ -73,21 +73,21 @@
           </form>
         </div>
       </div>
-      <div id="card-modal" class="modal modal_opened">
+      <div id="new-card-modal" class="modal">
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">New Post</h2>
-          <form name="new-post" class="modal__form">
-            <label for="image-input" class="modal__label"
+          <form name="new-post" id="new-post" class="modal__form">
+            <label for="card-image-input" class="modal__label"
               >Image link
               <input
-                placeholder="Pasta a link to the picture"
+                placeholder="Paste a link to the picture"
                 id="card-image-input"
-                type="text"
+                type="url"
                 class="modal__input"
               />
             </label>
-            <label for="image-description-input" class="modal__label">
+            <label for="image-caption-input" class="modal__label">
               Caption
               <input
                 placeholder="Type your caption"
