@@ -45,6 +45,15 @@
   background-image: url(../images/like-btn-hover.svg);
 }
 
+.card__btn_active:hover {
+  opacity: 0.5;
+}
+
+.card__btn_active {
+  background-image: url(../images/like-btn-clicked.svg);
+  opacity: 1;
+}
+
 @media screen and (max-width: 627px) {
   .card {
     display: flex;
