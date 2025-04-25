@@ -121,6 +121,10 @@
   position: relative;
 }
 
+.modal__list {
+  list-style-type: none;
+}
+
 .modal__image {
   border-radius: 8px;
   max-width: 80vw;

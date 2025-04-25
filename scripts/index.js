@@ -56,6 +56,14 @@ const cardImageCaptionInput = newCardModal.querySelector(
   "#image-caption-input"
 );
 
+const picuteModal = document.querySelector("#picture-modal");
+const modalContainer = picuteModal.querySelector(".modal__container_image");
+const modalImage = picuteModal.querySelector(".modal__image");
+const modalLabel = picuteModal.querySelector(".modal__caption");
+const imageModalCloseButton = picuteModal.querySelector(
+  ".modal__close-btn_image"
+);
+
 initialCards.forEach(function (item) {
   console.log(item.name);
   console.log(item.link);
@@ -75,6 +83,13 @@ function getCardElement(data) {
 
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__btn_active");
+  });
+
+  cardImage.addEventListener("click", () => {
+    modalImage.src = data.link;
+    modalImage.alt = data.name;
+    modalLabel.textContent = data.name;
+    openModal(picuteModal);
   });
 
   cardImage.src = data.link;
@@ -127,6 +142,11 @@ newPostButton.addEventListener("click", function (item) {
 newCardModalCloseButton.addEventListener("click", function (item) {
   closeModal(newCardModal);
 });
+
+imageModalCloseButton.addEventListener("click", function (item) {
+  closeModal(picuteModal);
+});
+
 profileFormELement.addEventListener("submit", handleProfileFormSubmit);
 newPostFormElement.addEventListener("submit", hendleNewPostFormSubmit);
 
