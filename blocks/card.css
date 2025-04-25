@@ -1,5 +1,6 @@
 .card {
   max-width: 413px;
+  position: relative;
 }
 
 .card__image {
@@ -52,6 +53,23 @@
 .card__btn_active {
   background-image: url(../images/like-btn-clicked.svg);
   opacity: 1;
+}
+
+.card__btn-delete {
+  height: 32px;
+  width: 32px;
+  border: none;
+  background-color: transparent;
+  background-image: url(../images/trash-bin.svg);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.card__btn-delete:hover {
+  background-image: url(../images/trash-bin-hover.svg);
+  transition: background-image 1s ease-in 0.5s;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
