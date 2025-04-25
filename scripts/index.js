@@ -34,6 +34,7 @@ const newPostButton = document.querySelector(".profile__add-btn");
 
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const newCardModal = document.querySelector("#new-card-modal");
+
 const profileModalCloseButton =
   profileEditModal.querySelector(".modal__close-btn");
 const newCardModalCloseButton = newCardModal.querySelector(".modal__close-btn");
@@ -46,8 +47,8 @@ const editModalDescriptionInput = profileFormELement.querySelector(
   "#profile-description-input"
 );
 
-const cardImageInput = newPostFormElement.querySelector("#card-image-input");
-const cardImageCaptionInput = newPostFormElement.querySelector(
+const cardImageInput = newCardModal.querySelector("#card-image-input");
+const cardImageCaptionInput = newCardModal.querySelector(
   "#image-caption-input"
 );
 
@@ -74,8 +75,6 @@ function getCardElement(data) {
 }
 
 function openModal(modal) {
-  editModalNameInput.value = profileName.textContent;
-  editModalDescriptionInput.value = profileDescription.textContent;
   modal.classList.add("modal_opened");
 }
 
@@ -92,6 +91,13 @@ function handleProfileFormSubmit(evt) {
 
 function hendleNewPostFormSubmit(evt) {
   evt.preventDefault();
+
+  const cardElement = getCardElement({
+    name: cardImageCaptionInput.value,
+    link: cardImageInput.value,
+  });
+  cardsList.prepend(cardElement);
+  closeModal(newCardModal);
 }
 
 profileEditButton.addEventListener("click", function (item) {
@@ -100,14 +106,16 @@ profileEditButton.addEventListener("click", function (item) {
 profileModalCloseButton.addEventListener("click", function (item) {
   closeModal(profileEditModal);
 });
+newPostButton.addEventListener("click", function (item) {
+  openModal(newCardModal);
+});
 newCardModalCloseButton.addEventListener("click", function (item) {
   closeModal(newCardModal);
 });
 profileFormELement.addEventListener("submit", handleProfileFormSubmit);
-newPostButton.addEventListener("click", function (item) {
-  openModal(newCardModal);
-});
-for (let i = 0; i < initialCards.length; i++) {
-  const cardElement = getCardElement(initialCards[i]);
+newPostFormElement.addEventListener("submit", hendleNewPostFormSubmit);
+
+initialCards.forEach(function (item) {
+  const cardElement = getCardElement(item);
   cardsList.prepend(cardElement);
-}
+});
