@@ -179,4 +179,23 @@
   .modal__submit-btn {
     width: 100%;
   }
+
+  .modal__content {
+    flex-direction: column-reverse;
+    align-items: end;
+    max-width: 288px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .modal__container_image {
+    align-self: center;
+    margin: 0 auto;
+    max-width: 288px;
+  }
+  .modal__list {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+  }
 }
