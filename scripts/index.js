@@ -1,5 +1,9 @@
 const initialCards = [
   {
+    name: "Golden gate",
+    link: "./images/golden-gate.jpg",
+  },
+  {
     name: "Waterfall off mountain",
     link: "./images/waterfall2.jpg",
   },
