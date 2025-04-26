@@ -64,11 +64,6 @@ const imageModalCloseButton = picuteModal.querySelector(
   ".modal__close-btn_image"
 );
 
-initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
-});
-
 const cardTemplate = document.querySelector("#card");
 
 function getCardElement(data) {
