@@ -114,7 +114,7 @@ function handleProfileFormSubmit(evt) {
   closeModal(profileEditModal);
 }
 
-function hendleNewPostFormSubmit(evt) {
+function handleNewPostFormSubmit(evt) {
   evt.preventDefault();
 
   const cardElement = getCardElement({
@@ -143,7 +143,7 @@ imageModalCloseButton.addEventListener("click", function (item) {
 });
 
 profileFormELement.addEventListener("submit", handleProfileFormSubmit);
-newPostFormElement.addEventListener("submit", hendleNewPostFormSubmit);
+newPostFormElement.addEventListener("submit", handleNewPostFormSubmit);
 
 initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
