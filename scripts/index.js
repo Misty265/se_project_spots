@@ -57,7 +57,7 @@ const cardImageCaptionInput = newCardModal.querySelector(
 );
 
 const pictureModal = document.querySelector("#picture-modal");
-const modalContainer = picuteModal.querySelector(".modal__container_image");
+const modalContainer = pictureModal.querySelector(".modal__container_image");
 const modalImage = pictureModal.querySelector(".modal__image");
 const modalLabel = pictureModal.querySelector(".modal__caption");
 const imageModalCloseButton = pictureModal.querySelector(
