@@ -53,6 +53,7 @@
 .card__btn_active {
   background-image: url(../images/like-btn-clicked.svg);
   opacity: 1;
+  background-repeat: no-repeat;
 }
 
 .card__btn-delete {
