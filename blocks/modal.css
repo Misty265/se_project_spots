@@ -208,3 +208,14 @@
     margin: 0 auto;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .modal__container_image {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .modal__list {
+    padding: 0 0;
+  }
+}
