@@ -125,6 +125,7 @@
 
 .modal__list {
   list-style-type: none;
+  padding: 0 0;
 }
 
 .modal__image {
@@ -217,5 +218,8 @@
   }
   .modal__list {
     padding: 0 0;
+  }
+  .modal__image {
+    max-width: 90vw;
   }
 }
