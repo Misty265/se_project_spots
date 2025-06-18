@@ -156,7 +156,7 @@
   display: block;
 }
 
-.modal__close-btn_image {
+.modal__close-btn--image {
   height: 40px;
   width: 40px;
   border: none;
@@ -168,7 +168,7 @@
   margin-top: 10px;
 }
 
-.modal__close-btn_image:hover {
+.modal__close-btn--image:hover {
   opacity: 50%;
   transition: 1s ease-out 0.5s;
 }

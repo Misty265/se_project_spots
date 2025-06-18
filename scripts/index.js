@@ -57,17 +57,19 @@ const cardImageCaptionInput = newCardModal.querySelector(
 );
 
 const pictureModal = document.querySelector("#picture-modal");
-const modalContainer = pictureModal.querySelector(".modal__container_image");
+const modalContainer = pictureModal.querySelector(".modal__container--image");
 const modalImage = pictureModal.querySelector(".modal__image");
 const modalLabel = pictureModal.querySelector(".modal__caption");
 const imageModalCloseButton = pictureModal.querySelector(
-  ".modal__close-btn_image"
+  ".modal__close-btn--image"
 );
+
 const profileSubmitButton =
   profileEditModal.querySelector(".modal__submit-btn");
 const newPostSubmitButton = newCardModal.querySelector(".modal__submit-btn");
 
 const cardTemplate = document.querySelector("#card");
+const formInputList = document.querySelectorAll(".modal__input");
 
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -110,11 +112,16 @@ function closeModal(modal) {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+  resetValidation(profileFormElement, [
+    editModalNameInput,
+    editModalDescriptionInput,
+    settings,
+  ]);
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
   closeModal(profileEditModal);
+  toggleButtonState(formInputList, profileSubmitButton, settings);
   evt.target.reset();
-  disableButton(profileSubmitButton, settings);
 }
 
 function handleNewPostFormSubmit(evt) {
@@ -126,18 +133,25 @@ function handleNewPostFormSubmit(evt) {
   cardsList.prepend(cardElement);
   closeModal(newCardModal);
   evt.target.reset();
-  disableButton(newPostSubmitButton, settings);
+  toggleButtonState(formInputList, newPostSubmitButton, settings);
+  resetValidation(
+    newPostFormElement,
+    [cardImageInput, cardImageCaptionInput],
+    settings
+  );
 }
 
-profileEditButton.addEventListener("click", function (item) {
+profileEditButton.addEventListener("click", function (evt) {
+  resetValidation(
+    profileFormElement,
+    [editModalNameInput, editModalDescriptionInput],
+    settings
+  );
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
-  resetValidation(profileFormElement, [
-    editModalNameInput,
-    editModalDescriptionInput,
-  ]);
 });
+
 profileModalCloseButton.addEventListener("click", function (evt) {
   closeModal(profileEditModal);
 });
@@ -145,11 +159,25 @@ newPostButton.addEventListener("click", function (evt) {
   openModal(newCardModal);
 });
 newCardModalCloseButton.addEventListener("click", function (evt) {
+  toggleButtonState(formInputList, newPostSubmitButton, settings);
+  resetValidation(
+    newPostFormElement,
+    [cardImageInput, cardImageCaptionInput],
+    settings
+  );
   closeModal(newCardModal);
+  checkInputValidity(newPostFormElement, cardImageInput, settings);
 });
 
 imageModalCloseButton.addEventListener("click", function (evt) {
   closeModal(pictureModal);
+  toggleButtonState(formInputList, newPostSubmitButton, settings);
+  resetValidation(
+    newPostFormElement,
+    [cardImageInput, cardImageCaptionInput],
+    settings
+  );
+  checkInputValidity(newPostFormElement, cardImageInput, settings);
 });
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);

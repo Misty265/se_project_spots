@@ -34,10 +34,8 @@ const checkInputValidity = (formElement, inputElement, config) => {
   }
 };
 
-hasInvalidInput = (formInputList) => {
-  return formInputList.some((input) => {
-    return !input.validity.valid;
-  });
+const hasInvalidInput = (formInputList) => {
+  return formInputList.some((input) => !input.validity.valid);
 };
 
 const disableButton = (buttonElement, config) => {
@@ -45,11 +43,10 @@ const disableButton = (buttonElement, config) => {
   buttonElement.classList.add(config.inactiveButtonClass);
 };
 
-const resetValidation = (formElement, formInputList) => {
+const resetValidation = (formElement, formInputList, config) => {
   formInputList.forEach((input) => {
-    hideInputError(formElement, input);
+    hideInputError(formElement, input, config);
   });
-  formElement.reset();
 };
 
 const toggleButtonState = (formInputList, buttonElement, config) => {
@@ -71,6 +68,17 @@ const setEventListeners = (formElement, config) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(formInputList, buttonElement, config);
+    });
+    inputElement.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter") {
+        openModal(modal);
+      }
+      if (evt.key === "Escape") {
+        closeModal(modal);
+      }
+      if (evt.target === newPostFormElement || formInputList) {
+        openModal(modal);
+      }
     });
   });
 };
