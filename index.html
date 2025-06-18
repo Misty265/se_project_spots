@@ -51,7 +51,12 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">Edit profile</h2>
-          <form name="edit-profile" id="edit-profile" class="modal__form">
+          <form
+            name="edit-profile"
+            id="edit-profile"
+            class="modal__form"
+            novalidate
+          >
             <label for="profile-name-input" class="modal__label">
               Name
               <input
@@ -60,7 +65,10 @@
                 id="profile-name-input"
                 type="text"
                 class="modal__input"
+                minlength="2"
+                maxlength="40"
               />
+              <span id="profile-name-input-error" class="modal__error"></span>
             </label>
             <label for="profile-description-input" class="modal__label">
               Description
@@ -70,9 +78,17 @@
                 id="profile-description-input"
                 type="text"
                 class="modal__input"
+                minlength="2"
+                maxlength="200"
               />
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button type="submit" class="modal__submit-btn" disabled>
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -80,7 +96,7 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">New Post</h2>
-          <form name="new-post" id="new-post" class="modal__form">
+          <form name="new-post" id="new-post" class="modal__form" novalidate>
             <label for="card-image-input" class="modal__label"
               >Image link
               <input
@@ -90,6 +106,7 @@
                 type="url"
                 class="modal__input"
               />
+              <span id="card-image-input-error" class="modal__error"></span>
             </label>
             <label for="image-caption-input" class="modal__label">
               Caption
@@ -99,9 +116,14 @@
                 id="image-caption-input"
                 type="text"
                 class="modal__input"
+                minlength="2"
+                maxlength="30"
               />
+              <span id="image-caption-input-error" class="modal__error"></span>
             </label>
-            <button type="submit" class="modal__submit-btn">Save</button>
+            <button type="submit" class="modal__submit-btn" disabled>
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -122,5 +144,6 @@
       </div>
     </div>
     <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
