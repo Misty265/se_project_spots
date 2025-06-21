@@ -10,6 +10,10 @@
   display: block;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__content {
   display: flex;
   justify-content: space-between;
@@ -32,7 +36,6 @@
 
 .card__btn:hover {
   opacity: 1;
-
   cursor: pointer;
 }
 

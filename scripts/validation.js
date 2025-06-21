@@ -2,7 +2,7 @@ const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__submit-btn-disabled",
+  inactiveButtonClass: "modal__submit-btn_disabled",
   inputErrorClass: "modal__input-error",
   errorClass: "modal__error",
 };
@@ -64,21 +64,13 @@ const setEventListeners = (formElement, config) => {
   );
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(formInputList, buttonElement, config);
+  formElement.addEventListener("reset", () => {
+    disableButton(buttonElement, config);
+  });
   formInputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(formInputList, buttonElement, config);
-    });
-    inputElement.addEventListener("keydown", (evt) => {
-      if (evt.key === "Enter") {
-        openModal(modal);
-      }
-      if (evt.key === "Escape") {
-        closeModal(modal);
-      }
-      if (evt.target === newPostFormElement || formInputList) {
-        openModal(modal);
-      }
     });
   });
 };
