@@ -138,8 +138,13 @@
   flex-direction: row;
 }
 
-.modal__container_image {
+.modal__container--image {
   position: relative;
+  background: transparent;
+  max-width: 80vw;
+  display: flex;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .modal__list {
@@ -156,7 +161,7 @@
   display: block;
 }
 
-.modal__close-btn--image {
+.modal__close-btn_type_preview {
   height: 40px;
   width: 40px;
   border: none;
@@ -164,11 +169,14 @@
   background-image: url(../images/close-button-light.svg);
   cursor: pointer;
   margin-left: 12.5px;
+  display: flex;
   position: relative;
   margin-top: 10px;
+  top: 0;
+  right: 0;
 }
 
-.modal__close-btn--image:hover {
+.modal__close-btn_type_preview:hover {
   opacity: 50%;
   transition: 1s ease-out 0.5s;
 }
