@@ -1,31 +1,44 @@
+import algea from "../images/algea.jpg";
+import city from "../images/city.jpg";
+import goldenGate from "../images/golden-gate.jpg";
+import mist from "../images/mist.jpg";
+import sunset from "../images/sunset.jpg";
+import waterfall from "../images/waterfall.jpg";
+import waterfall2 from "../images/waterfall2.jpg";
+import "./index.css";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+} from "../scripts/validation";
 const initialCards = [
   {
     name: "Golden gate",
-    link: "./images/golden-gate.jpg",
+    link: goldenGate,
   },
   {
     name: "Waterfall off mountain",
-    link: "./images/waterfall2.jpg",
+    link: waterfall2,
   },
   {
     name: "City lights",
-    link: "./images/city.jpg",
+    link: city,
   },
   {
     name: "Algea on the rocks",
-    link: "./images/algea.jpg",
+    link: algea,
   },
   {
     name: "Waterfall in the mountains",
-    link: "./images/waterfall.jpg",
+    link: waterfall,
   },
   {
     name: "Misty days",
-    link: "./images/mist.jpg",
+    link: mist,
   },
   {
     name: "Sunset over snowy beach",
-    link: "./images/sunset.jpg",
+    link: sunset,
   },
 ];
 
@@ -41,21 +54,21 @@ const newCardModal = document.querySelector("#new-card-modal");
 
 const closeButtons = document.querySelectorAll(".modal__close-btn");
 const modalCloseButtonImage = document.querySelector(
-  ".modal__close-btn--image"
+  ".modal__close-btn--image",
 );
 
 const profileFormElement = profileEditModal.querySelector("#edit-profile");
 const newPostFormElement = newCardModal.querySelector("#new-post");
 const editModalNameInput = profileFormElement.querySelector(
-  "#profile-name-input"
+  "#profile-name-input",
 );
 const editModalDescriptionInput = profileFormElement.querySelector(
-  "#profile-description-input"
+  "#profile-description-input",
 );
 
 const cardImageInput = newCardModal.querySelector("#card-image-input");
 const cardImageCaptionInput = newCardModal.querySelector(
-  "#image-caption-input"
+  "#image-caption-input",
 );
 
 const pictureModal = document.querySelector("#picture-modal");
@@ -159,7 +172,7 @@ profileEditButton.addEventListener("click", function (evt) {
   resetValidation(
     profileFormElement,
     [editModalNameInput, editModalDescriptionInput],
-    settings
+    settings,
   );
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
@@ -200,3 +213,4 @@ pictureModal.addEventListener("click", (evt) => {
 });
 
 pictureModal.addEventListener("keydown", handleEscape);
+enableValidation(settings);
