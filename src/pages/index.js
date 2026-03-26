@@ -85,7 +85,6 @@ const cardTemplate = document.querySelector("#card");
 const formInputList = document.querySelectorAll(".modal__input");
 
 const modals = document.querySelectorAll(".modal");
-const closeButtons = document.querySelectorAll(".modal__close-btn");
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
