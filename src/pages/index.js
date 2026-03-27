@@ -11,6 +11,16 @@ import {
   settings,
   resetValidation,
 } from "../scripts/validation";
+import Api from "../scripts/api.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    autorization: "178d7092-01b1-48ac-9393-f9f11339a93a",
+    "Content-Type": "application/json",
+  },
+});
+
 const initialCards = [
   {
     name: "Golden gate",
