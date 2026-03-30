@@ -14,7 +14,7 @@ import {
 import Api from "../scripts/api.js";
 
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  baseUrl: "https://misty265.github.io/se_project_spots/",
   headers: {
     autorization: "178d7092-01b1-48ac-9393-f9f11339a93a",
     "Content-Type": "application/json",
