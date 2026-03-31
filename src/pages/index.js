@@ -60,7 +60,7 @@ api.getCards().then((cards) => {
   console.log(cards).json();
   cards.forEach((card) => {
     const cardElement = getCardElement(card);
-    cardsList.prepend(cardElement);
+    cardsList.prepend(cardElement.json());
   });
 });
 
