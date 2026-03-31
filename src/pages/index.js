@@ -135,7 +135,6 @@ function getCardElement(data) {
 
   cardDeleteButton.addEventListener("click", () => {
     cardDeleteButton.closest(".card").remove();
-    api.deleteCard();
   });
 
   return cardElement;
