@@ -53,10 +53,12 @@ const api = new Api({
 // ];
 
 api.getCards().then((cards) => {
-  cards.forEach((card) => {
-    const cardElement = getCardElement(card);
-    cardsList.prepend(api._handleServerResponse(cardElement));
-  });
+  cards
+    .forEach((card) => {
+      const cardElement = getCardElement(card);
+      cardsList.prepend(cardElement);
+    })
+    .catch((err) => console.error(err));
 });
 
 const cardsList = document.querySelector(".cards__list");
