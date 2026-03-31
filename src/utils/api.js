@@ -24,7 +24,9 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then((res) => {
-      return this._handleServerResponse(res);
+      if (res.ok) {
+        return res.json();
+      }
     });
   }
 
