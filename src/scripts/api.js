@@ -26,13 +26,17 @@ export class Api {
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then(
-      ((res) => {
-        this._handleServerResponse(res);
-      }).catch((err) => {
+    })
+      .then(
+        ((res) => {
+          this._handleServerResponse(res);
+        }).catch((err) => {
+          console.err(err);
+        }),
+      )
+      .catch((err) => {
         console.err(err);
-      }),
-    );
+      });
   }
 
   addCard(name, link) {
@@ -45,7 +49,10 @@ export class Api {
       }),
     })
       .then(this._handleServerResponse)
-      .then(this.getCards);
+      .then(this.getCards)
+      .catch((err) => {
+        console.err(err);
+      });
   }
 
   updateProfile(name, description) {
@@ -58,7 +65,10 @@ export class Api {
       }),
     })
       .then(this._handleServerResponse)
-      .then(this.getUser);
+      .then(this.getUser)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   updateAvatar(image) {
@@ -66,22 +76,45 @@ export class Api {
       method: "PATCH",
       headers: this._headers,
       body: { image },
-    });
+    })
+      .then((image) => {
+        this._handleServerResponse(image);
+      })
+      .then(this.getUser)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   deleteCard() {
     (fetch(`${this._baseUrl}/:cardId `),
-      {
-        method: "DELETE",
-        headers: this._headers,
+    {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((card) => {
+        card.delete();
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 
   likeCard() {
-    fetch(`${this._baseUrl}/:cardId/likes`, {});
+    fetch(`${this._baseUrl}/:cardId/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((like) => {
+      like++;
+    });
   }
 
   dislikeCard() {
-    fetch(`${this._baseUrl}/:cardId/likes`, {});
+    fetch(`${this._baseUrl}/:cardId/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((like) => {
+      like--;
+    });
   }
 }
