@@ -52,14 +52,17 @@ const api = new Api({
 //   },
 // ];
 
-api.getCards().then((cards) => {
-  cards
-    .forEach((card) => {
+api
+  .getCards()
+  .then((cards) => {
+    cards.forEach((card) => {
       const cardElement = getCardElement(card);
       cardsList.prepend(cardElement);
-    })
-    .catch((err) => console.error(err));
-});
+    });
+  })
+  .catch(console.error);
+
+api.getUser();
 
 const cardsList = document.querySelector(".cards__list");
 
