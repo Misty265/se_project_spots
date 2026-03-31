@@ -11,16 +11,14 @@ import {
   settings,
   resetValidation,
 } from "../scripts/validation";
-import Api from "../scripts/api.js";
+import Api from "../utils/api.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     autorization: "178d7092-01b1-48ac-9393-f9f11339a93a",
     "Content-Type": "application/json",
-  }.then((res) => {
-    return res.json();
-  }),
+  },
 });
 
 api.getUser({ profileName, profileDescription });
@@ -60,7 +58,7 @@ api.getCards().then((cards) => {
   console.log(cards).json();
   cards.forEach((card) => {
     const cardElement = getCardElement(card);
-    cardsList.prepend(cardElement.json());
+    cardsList.prepend(api._handleServerResponse(cardElement));
   });
 });
 
