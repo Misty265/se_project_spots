@@ -15,25 +15,17 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       body: { name, about },
-    })
-      .then((res) => {
-        this._handleServerResponse(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then((res) => {
+      return this._handleServerResponse(res);
+    });
   }
 
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        return this._handleServerResponse(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then((res) => {
+      return this._handleServerResponse(res);
+    });
   }
 
   addCard({ name, link }) {
@@ -44,12 +36,7 @@ class Api {
         name,
         link,
       }),
-    })
-      .then(this._handleServerResponse)
-      .then(this.getCards)
-      .catch((err) => {
-        console.error(err);
-      });
+    });
   }
 
   updateProfile({ name, about }) {
@@ -60,12 +47,7 @@ class Api {
         name,
         about,
       }),
-    })
-      .then(this._handleServerResponse)
-      .then(this.getUser)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this.getUser);
   }
 
   updateAvatar({ image }) {
@@ -77,23 +59,14 @@ class Api {
       .then((image) => {
         this._handleServerResponse(image);
       })
-      .then(this.getUser)
-      .catch((err) => {
-        console.error(err);
-      });
+      .then(this.getUser);
   }
 
   deleteCard() {
     (fetch(`${this._baseUrl}/:cardId `),
-    {
-      method: "DELETE",
-      headers: this._headers,
-    })
-      .then((card) => {
-        card.closest(".card").delete();
-      })
-      .catch((err) => {
-        console.error(err);
+      {
+        method: "DELETE",
+        headers: this._headers,
       });
   }
 

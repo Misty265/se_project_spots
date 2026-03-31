@@ -53,7 +53,6 @@ const api = new Api({
 // ];
 
 api.getCards().then((cards) => {
-  console.log(cards).json();
   cards.forEach((card) => {
     const cardElement = getCardElement(card);
     cardsList.prepend(api._handleServerResponse(cardElement));
