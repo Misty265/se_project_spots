@@ -21,8 +21,6 @@ const api = new Api({
   },
 });
 
-api.getUser({ profileName, profileDescription });
-
 // const initialCards = [
 //   {
 //     name: "Golden gate",
