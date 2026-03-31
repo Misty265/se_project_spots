@@ -4,13 +4,6 @@ class Api {
     this._headers = headers;
   }
 
-  _handleServerResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  }
-
   getUser({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -27,6 +20,7 @@ class Api {
       if (res.ok) {
         return res.json();
       }
+      Promise.reject(`Error: ${res.status}`);
     });
   }
 
