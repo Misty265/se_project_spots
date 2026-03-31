@@ -21,6 +21,8 @@ const api = new Api({
   },
 });
 
+api.getUser({ profileName, profileDescription });
+
 const initialCards = [
   {
     name: "Golden gate",
@@ -105,7 +107,13 @@ function getCardElement(data) {
   const cardDeleteButton = cardElement.querySelector(".card__btn-delete");
 
   cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__btn_active");
+    if (cardLikeButton) {
+      cardLikeButton.classList.add("card__btn_active");
+      api.likeCard();
+    } else {
+      cardLikeButton.classList.remove("card__btn_active");
+      api.dislikeCard();
+    }
   });
 
   cardImage.addEventListener("click", () => {
@@ -121,6 +129,7 @@ function getCardElement(data) {
 
   cardDeleteButton.addEventListener("click", () => {
     cardDeleteButton.closest(".card").remove();
+    api.deleteCard();
   });
 
   return cardElement;
@@ -149,6 +158,7 @@ function handleProfileFormSubmit(evt) {
   closeModal(profileEditModal);
   disableButton(profileSubmitButton, settings);
   evt.target.reset();
+  api.getUser({ profileName, profileDescription });
 }
 
 function handleNewPostFormSubmit(evt) {
@@ -187,8 +197,11 @@ const renderCard = (item, method = "prepend") => {
 };
 
 initialCards.forEach((item) => {
+  api.getCards({
+    name: item.name,
+    link: item.link,
+  });
   renderCard(item);
-  api.getCards();
 });
 
 closeButtons.forEach((button) => {

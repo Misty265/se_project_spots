@@ -11,9 +11,10 @@ export class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  getUser() {
+  getUser({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
+      body: { name, about },
     })
       .then((res) => {
         this._handleServerResponse(res);
@@ -23,23 +24,23 @@ export class Api {
       });
   }
 
-  getCards() {
+  getCards({ card }) {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
+      body: { card },
     })
-      .then(
-        ((res) => {
-          this._handleServerResponse(res);
-        }).catch((err) => {
-          console.err(err);
-        }),
-      )
+      .then((res) => {
+        return this._handleServerResponse(res);
+      })
+      .then((card) => {
+        document.body.push(card);
+      })
       .catch((err) => {
         console.err(err);
       });
   }
 
-  addCard(name, link) {
+  addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -55,7 +56,7 @@ export class Api {
       });
   }
 
-  updateProfile(name, description) {
+  updateProfile({ name, description }) {
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -71,7 +72,7 @@ export class Api {
       });
   }
 
-  updateAvatar(image) {
+  updateAvatar({ image }) {
     fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
