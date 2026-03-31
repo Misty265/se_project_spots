@@ -18,9 +18,9 @@ const api = new Api({
   headers: {
     autorization: "178d7092-01b1-48ac-9393-f9f11339a93a",
     "Content-Type": "application/json",
-  },
-}).then((res) => {
-  return res.json();
+  }.then((res) => {
+    return res.json();
+  }),
 });
 
 api.getUser({ profileName, profileDescription });
