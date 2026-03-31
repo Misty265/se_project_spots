@@ -1,4 +1,4 @@
-export class Api {
+export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -24,7 +24,7 @@ export class Api {
       });
   }
 
-  getCards({ card }) {
+  getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       body: { card },
@@ -56,13 +56,13 @@ export class Api {
       });
   }
 
-  updateProfile({ name, description }) {
+  updateProfile({ name, about }) {
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name,
-        description,
+        about,
       }),
     })
       .then(this._handleServerResponse)
@@ -94,7 +94,7 @@ export class Api {
       headers: this._headers,
     })
       .then((card) => {
-        card.delete();
+        card.closest(".card").delete();
       })
       .catch((err) => {
         console.error(err);

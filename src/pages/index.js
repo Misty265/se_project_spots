@@ -14,7 +14,7 @@ import {
 import Api from "../scripts/api.js";
 
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1/",
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     autorization: "178d7092-01b1-48ac-9393-f9f11339a93a",
     "Content-Type": "application/json",
@@ -53,6 +53,14 @@ const initialCards = [
     link: sunset,
   },
 ];
+
+api.getCards().then((cards) => {
+  console.log(cards).json();
+  cards.forEach((card) => {
+    const cardElement = getCardElement(card);
+    cardsList.prepend(cardElement);
+  });
+});
 
 const cardsList = document.querySelector(".cards__list");
 
@@ -190,19 +198,6 @@ newPostButton.addEventListener("click", function (evt) {
 
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 newPostFormElement.addEventListener("submit", handleNewPostFormSubmit);
-
-const renderCard = (item, method = "prepend") => {
-  const cardElement = getCardElement(item);
-  cardsList[method](cardElement);
-};
-
-initialCards.forEach((item) => {
-  api.getCards({
-    name: item.name,
-    link: item.link,
-  });
-  renderCard(item);
-});
 
 closeButtons.forEach((button) => {
   const modal = button.closest(".modal");
