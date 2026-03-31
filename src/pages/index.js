@@ -19,40 +19,42 @@ const api = new Api({
     autorization: "178d7092-01b1-48ac-9393-f9f11339a93a",
     "Content-Type": "application/json",
   },
+}).then((res) => {
+  return res.json();
 });
 
 api.getUser({ profileName, profileDescription });
 
-const initialCards = [
-  {
-    name: "Golden gate",
-    link: goldenGate,
-  },
-  {
-    name: "Waterfall off mountain",
-    link: waterfall2,
-  },
-  {
-    name: "City lights",
-    link: city,
-  },
-  {
-    name: "Algea on the rocks",
-    link: algea,
-  },
-  {
-    name: "Waterfall in the mountains",
-    link: waterfall,
-  },
-  {
-    name: "Misty days",
-    link: mist,
-  },
-  {
-    name: "Sunset over snowy beach",
-    link: sunset,
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Golden gate",
+//     link: goldenGate,
+//   },
+//   {
+//     name: "Waterfall off mountain",
+//     link: waterfall2,
+//   },
+//   {
+//     name: "City lights",
+//     link: city,
+//   },
+//   {
+//     name: "Algea on the rocks",
+//     link: algea,
+//   },
+//   {
+//     name: "Waterfall in the mountains",
+//     link: waterfall,
+//   },
+//   {
+//     name: "Misty days",
+//     link: mist,
+//   },
+//   {
+//     name: "Sunset over snowy beach",
+//     link: sunset,
+//   },
+// ];
 
 api.getCards().then((cards) => {
   console.log(cards).json();

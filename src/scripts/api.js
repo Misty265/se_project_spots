@@ -27,13 +27,9 @@ export default class Api {
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-      body: { card },
     })
       .then((res) => {
         return this._handleServerResponse(res);
-      })
-      .then((card) => {
-        document.body.push(card);
       })
       .catch((err) => {
         console.err(err);
