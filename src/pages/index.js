@@ -172,7 +172,7 @@ function handleProfileFormSubmit(evt) {
 
 function handleNewPostFormSubmit(evt) {
   evt.preventDefault();
-  const cardElement = getCardElement({
+  const cardElement = api.addCard({
     name: cardImageCaptionInput.value,
     link: cardImageInput.value,
   });
@@ -180,6 +180,7 @@ function handleNewPostFormSubmit(evt) {
   closeModal(newCardModal);
   evt.target.reset();
   disableButton(newPostSubmitButton, settings);
+  api.addCard(cardElement);
 }
 
 profileEditButton.addEventListener("click", function (evt) {
