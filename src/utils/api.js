@@ -32,7 +32,7 @@ class Api {
         return this._handleServerResponse(res);
       })
       .catch((err) => {
-        console.err(err);
+        console.error(err);
       });
   }
 
@@ -48,7 +48,7 @@ class Api {
       .then(this._handleServerResponse)
       .then(this.getCards)
       .catch((err) => {
-        console.err(err);
+        console.error(err);
       });
   }
 
