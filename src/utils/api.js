@@ -74,7 +74,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((item) => {
-      item.closest(".card").remove();
+      this.closest(".card").remove();
     });
   }
 
