@@ -63,8 +63,11 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: { image },
-    }).then((image) => {
-      this._handleServerResponse(image);
+    }).then((res) => {
+      if (res.ok) {
+        return res.json;
+      }
+      Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -74,7 +77,7 @@ class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((item) => {
-      this.closest(".card").remove();
+      item.closest(".card").remove();
     });
   }
 
@@ -82,8 +85,11 @@ class Api {
     fetch(`${this._baseUrl}/cards/:cardId/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then((like) => {
-      like++;
+    }).then((like = true) => {
+      if (like === true) {
+        this._liked += 1;
+        this._total += 1;
+      }
     });
   }
 
@@ -91,8 +97,11 @@ class Api {
     fetch(`${this._baseUrl}/cards/:cardId/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((like) => {
-      like--;
+    }).then((like = false) => {
+      if ((like = false && this._liked > 0)) {
+        this._liked--;
+        this._total--;
+      }
     });
   }
 }

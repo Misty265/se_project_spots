@@ -168,7 +168,7 @@ function handleProfileFormSubmit(evt) {
   closeModal(profileEditModal);
   disableButton(profileSubmitButton, settings);
   evt.target.reset();
-  api.updateProfile({ profileName, profileDescription });
+  api.updateProfile({ name: profileName, about: profileDescription });
 }
 
 function handleNewPostFormSubmit(evt) {
