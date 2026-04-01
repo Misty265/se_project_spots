@@ -2,6 +2,8 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._liked = 0;
+    this._total = 0;
   }
 
   getUser() {
