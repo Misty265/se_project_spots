@@ -34,6 +34,11 @@ class Api {
         name,
         link,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -45,7 +50,12 @@ class Api {
         name,
         about,
       }),
-    }).then(this.getUser);
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject(`Error: ${res.status}`);
+    });
   }
 
   updateAvatar({ image }) {
@@ -53,23 +63,23 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: { image },
-    })
-      .then((image) => {
-        this._handleServerResponse(image);
-      })
-      .then(this.getUser);
+    }).then((image) => {
+      this._handleServerResponse(image);
+    });
   }
 
   deleteCard() {
-    (fetch(`${this._baseUrl}/:cardId `),
-      {
-        method: "DELETE",
-        headers: this._headers,
-      });
+    (fetch(`${this._baseUrl}/cards/:cardId `),
+    {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((item) => {
+      item.closest(".card").remove();
+    });
   }
 
   likeCard() {
-    fetch(`${this._baseUrl}/:cardId/likes`, {
+    fetch(`${this._baseUrl}/cards/:cardId/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then((like) => {
@@ -78,7 +88,7 @@ class Api {
   }
 
   dislikeCard() {
-    fetch(`${this._baseUrl}/:cardId/likes`, {
+    fetch(`${this._baseUrl}/cards/:cardId/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then((like) => {

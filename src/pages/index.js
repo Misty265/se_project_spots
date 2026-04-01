@@ -139,6 +139,7 @@ function getCardElement(data) {
 
   cardDeleteButton.addEventListener("click", () => {
     cardDeleteButton.closest(".card").remove();
+    api.deleteCard();
   });
 
   return cardElement;
@@ -167,7 +168,7 @@ function handleProfileFormSubmit(evt) {
   closeModal(profileEditModal);
   disableButton(profileSubmitButton, settings);
   evt.target.reset();
-  api.getUser({ profileName, profileDescription });
+  api.updateProfile({ profileName, profileDescription });
 }
 
 function handleNewPostFormSubmit(evt) {
@@ -180,7 +181,6 @@ function handleNewPostFormSubmit(evt) {
   closeModal(newCardModal);
   evt.target.reset();
   disableButton(newPostSubmitButton, settings);
-  api.addCard(cardElement);
 }
 
 profileEditButton.addEventListener("click", function (evt) {
