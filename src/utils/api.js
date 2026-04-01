@@ -78,29 +78,29 @@ class Api {
     {
       method: "DELETE",
       headers: this._headers,
-    }).then((item) => {
-      item.closest(".card").remove();
+    }).then(() => {
+      item.remove();
     });
   }
 
-  likeCard() {
+  likeCard(isLiked) {
     fetch(`${this._baseUrl}/cards/:cardId/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then((like = true) => {
-      if (like === true) {
-        this._liked += 1;
-        this._total += 1;
+    }).then(() => {
+      if (isLiked === true) {
+        this._liked++;
+        this._total++;
       }
     });
   }
 
-  dislikeCard() {
+  dislikeCard(isLiked) {
     fetch(`${this._baseUrl}/cards/:cardId/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((like = false) => {
-      if ((like = false && this._liked > 0)) {
+    }).then(() => {
+      if (isLiked === false && this._liked > 0) {
         this._liked--;
         this._total--;
       }

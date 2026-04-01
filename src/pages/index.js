@@ -119,10 +119,10 @@ function getCardElement(data) {
   cardLikeButton.addEventListener("click", () => {
     if (cardLikeButton) {
       cardLikeButton.classList.add("card__btn_active");
-      api.likeCard();
+      api.likeCard(true);
     } else {
       cardLikeButton.classList.remove("card__btn_active");
-      api.dislikeCard();
+      api.dislikeCard(false);
     }
   });
 
