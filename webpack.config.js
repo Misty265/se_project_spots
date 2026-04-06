@@ -2,8 +2,42 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 module.exports = {
+  resolve: {
+    fallback: {
+      stream: require.resolve("stream-browserify"),
+      zlib: require.resolve("browserify-zlib"),
+      crypto: require.resolve("crypto-browserify"),
+      path: require.resolve("path-browserify"),
+      vm: require.resolve("vm-browserify"),
+      url: require.resolve("url/"),
+      https: require.resolve("https-browserify"),
+      http: require.resolve("stream-http"),
+      buffer: require.resolve("buffer/"),
+      os: require.resolve("os-browserify/browser"),
+      tty: require.resolve("tty-browserify"),
+      querystring: require.resolve("querystring-es3"),
+      constants: require.resolve("constants-browserify"),
+      assert: require.resolve("assert/"),
+      fs: false,
+      child_process: false,
+      net: false,
+      tls: false,
+      dgram: false,
+      readline: false,
+      repl: false,
+      cluster: false,
+      module: false,
+      worker_threads: false,
+      fsevents: false,
+      perf_hooks: false,
+      async_hooks: false,
+      inspector: false,
+      v8: false,
+      trace_events: false,
+      console: false,
+    },
+  },
   entry: {
     main: "./src/pages/index.js",
   },

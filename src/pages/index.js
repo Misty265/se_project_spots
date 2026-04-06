@@ -10,7 +10,8 @@ import {
   enableValidation,
   settings,
   resetValidation,
-} from "../scripts/validation";
+  disableButton,
+} from "../scripts/validation.js";
 import Api from "../utils/api.js";
 
 const api = new Api({
@@ -53,19 +54,23 @@ const api = new Api({
 // ];
 
 api
-  .getCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([cards, { name, about, avatar }]) => {
     cards.forEach((card) => {
       const cardElement = getCardElement(card);
       cardsList.prepend(cardElement);
     });
+    profileName.textContent = name;
+    profileDescription.textContent = about;
+    profileImage.src = avatar;
+    profileImage.alt = name;
+    return;
   })
   .catch(console.error);
 
-api.getUser();
-
 const cardsList = document.querySelector(".cards__list");
 
+const profileImage = document.querySelector(".profile__image");
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -117,12 +122,11 @@ function getCardElement(data) {
   const cardDeleteButton = cardElement.querySelector(".card__btn-delete");
 
   cardLikeButton.addEventListener("click", () => {
-    if (cardLikeButton) {
-      cardLikeButton.classList.add("card__btn_active");
-      api.likeCard(true);
+    cardLikeButton.classList.toggle("card__btn_active");
+    if (cardLikeButton.classList.contains("card__btn_active")) {
+      api.likeCard({ card: data });
     } else {
-      cardLikeButton.classList.remove("card__btn_active");
-      api.dislikeCard(false);
+      api.dislikeCard({ card: data });
     }
   });
 
@@ -139,7 +143,7 @@ function getCardElement(data) {
 
   cardDeleteButton.addEventListener("click", () => {
     cardDeleteButton.closest(".card").remove();
-    api.deleteCard();
+    api.deleteCard({ card: data }).catch(console.error);
   });
 
   return cardElement;
@@ -163,12 +167,20 @@ function handleEscape(evt) {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
+  api
+    .updateProfile({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      return [
+        (profileName.textContent = data.name),
+        (profileDescription.textContent = data.about),
+      ];
+    });
   closeModal(profileEditModal);
   disableButton(profileSubmitButton, settings);
   evt.target.reset();
-  api.updateProfile({ name: profileName, about: profileDescription });
 }
 
 function handleNewPostFormSubmit(evt) {
