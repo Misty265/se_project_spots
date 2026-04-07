@@ -32,6 +32,17 @@
   border-radius: 8px;
 }
 
+.modal__title-avatar {
+  margin: 0 0 32px;
+  font-family: Poppins;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
 .modal__close-btn {
   position: absolute;
   top: 32px;
@@ -265,7 +276,7 @@
 }
 
 .modal__close-btn_type_delete-confirmation {
-  top: 12px;
+  top: 0;
   right: -50px;
   height: 40px;
   width: 40px;
@@ -277,6 +288,20 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+
+.modal__label-avatar {
+  margin: 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 17.6px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 @media screen and (max-width: 627px) {
