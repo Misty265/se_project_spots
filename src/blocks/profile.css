@@ -58,7 +58,6 @@
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   text-overflow: ellipsis;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
