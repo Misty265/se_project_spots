@@ -38,12 +38,14 @@
   right: 50px;
   height: 40px;
   width: 40px;
-  background-image: url(../images/close-btn.svg);
   background-repeat: no-repeat;
   background-position: center;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  background-blend-mode: lighten;
+  cursor: pointer;
+  opacity: 0.4;
+  background-image: url(../images/close-btn.svg);
 }
 
 .modal__close-btn:hover {
@@ -169,22 +171,23 @@
   border: none;
   background-color: transparent;
   background-image: url(../images/close-button-light.svg);
-  cursor: pointer;
   margin-left: 12.5px;
   display: flex;
   position: relative;
   margin-top: 10px;
+  opacity: 0.4;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 
 .modal__close-btn_type_preview:hover {
-  opacity: 50%;
+  opacity: 1;
   transition: 1s ease-out 0.5s;
 }
 
 .modal__caption {
-  color: white;
+  color: #fcf5e5;
   background-color: #212121;
   border-radius: 8px;
   padding: 4px 8px;
@@ -207,28 +210,73 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  gap: 12px;
+  margin: 0 auto 0;
+  gap: 20px;
   width: 332px;
-  margin-bottom: 52px;
 }
 
 .modal__submit-btn_type_confirm {
   width: 156px;
   background-color: #ff6565;
+  color: #212121;
 }
 
 .modal__submit-btn_type_confirm:hover {
   background-color: #ff3333;
   transition: 0.5s ease-in 0.3s;
+  cursor: pointer;
 }
 
-.modal__title-error {
+.modal__cancel-btn {
+  width: 156px;
+  padding: 18px 0;
+  color: #212121;
+  background-color: #fcf5e5;
+  border-radius: 8px;
+  border-color: #212121;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.modal__cancel-btn:hover {
+  background-color: #212121;
+  color: #fcf5e5;
+  transition: 0.5s ease-in 0.3s;
+  cursor: pointer;
+}
+.modal__title-delete {
   width: 590px;
   height: 24px;
   font-size: 24px;
-  margin-bottom: 24px;
+  margin: 0 auto 32px;
+  display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
+}
+
+.modal__container--delete-confirmation {
+  padding: 32px 20px;
+  max-width: 630px;
+}
+
+.modal__close-btn_type_delete-confirmation {
+  top: 12px;
+  right: -50px;
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-image: url(../images/close-button-light.svg);
+  cursor: pointer;
+  margin-left: 12.5px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 @media screen and (max-width: 627px) {

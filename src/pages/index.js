@@ -107,7 +107,7 @@ const modalContainers = document.querySelectorAll(".modal__container");
 const profileSubmitButton =
   profileEditModal.querySelector(".modal__submit-btn");
 const newPostSubmitButton = newCardModal.querySelector(".modal__submit-btn");
-
+const deleteModal = document.querySelector("#delete-confirmation-modal");
 const cardTemplate = document.querySelector("#card");
 const formInputList = document.querySelectorAll(".modal__input");
 
@@ -120,6 +120,10 @@ function getCardElement(data) {
   const cardTitle = cardElement.querySelector(".card__title");
   const cardLikeButton = cardElement.querySelector(".card__btn");
   const cardDeleteButton = cardElement.querySelector(".card__btn-delete");
+  const deleteBtn = deleteModal.querySelector(
+    ".modal__submit-btn_type_confirm",
+  );
+  const cancelBtn = deleteModal.querySelector(".modal__cancel-btn");
 
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__btn_active");
@@ -141,11 +145,22 @@ function getCardElement(data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
 
-  cardDeleteButton.addEventListener("click", () => {
-    cardDeleteButton.closest(".card").remove();
-    api.deleteCard({ card: data }).catch(console.error);
+  cardDeleteButton.addEventListener("click", (evt) => {
+    if (evt) {
+      evt.preventDefault();
+      openModal(deleteModal);
+      deleteModal.addEventListener("click", (evt) => {
+        if (evt.target === deleteBtn) {
+          cardDeleteButton.closest(".card").remove();
+          api.deleteCard({ card: data }).catch(console.error);
+        }
+        if (evt.target === cancelBtn) {
+          closeModal(deleteModal);
+        }
+        closeModal(deleteModal);
+      });
+    }
   });
-
   return cardElement;
 }
 
@@ -166,7 +181,6 @@ function handleEscape(evt) {
 }
 
 function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
   api
     .updateProfile({
       name: editModalNameInput.value,
@@ -184,7 +198,6 @@ function handleProfileFormSubmit(evt) {
 }
 
 function handleNewPostFormSubmit(evt) {
-  evt.preventDefault();
   const cardElement = api.addCard({
     name: cardImageCaptionInput.value,
     link: cardImageInput.value,

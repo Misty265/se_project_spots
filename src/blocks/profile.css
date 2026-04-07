@@ -14,6 +14,13 @@
   border-radius: 8px;
 }
 
+.profile__image:hover {
+  background-color: #000;
+  opacity: 1;
+  transition: 0.5s ease-in 0.3s;
+  cursor: pointer;
+}
+
 .profile__column {
   display: flex;
   flex-direction: column;
