@@ -15,13 +15,6 @@
   display: inline;
 }
 
-.profile__edit_avatar-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: auto;
-  list-style-type: none;
-}
-
 .profile__image-overlay {
   display: flex;
   position: absolute;
@@ -195,7 +188,6 @@
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
-    justify-content: center;
     padding: 20px 16px;
   }
   .profile__name {
@@ -222,7 +214,19 @@
     margin: auto;
   }
   .profile__add-btn {
-    min-width: 288px;
+    max-width: 288px;
+    margin: 0 auto;
+  }
+  .profile__image-overlay {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .profile__image-edit-btn {
+    width: 80px;
+    height: 80px;
     margin: 0 auto;
   }
 }

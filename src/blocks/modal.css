@@ -150,7 +150,8 @@
 
 .modal__content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-content: center;
 }
 
 .modal__container--image {
@@ -275,19 +276,27 @@
   max-width: 630px;
 }
 
+.modal__edit_avatar-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  list-style-type: none;
+}
+
 .modal__close-btn_type_delete-confirmation {
   top: 0;
   right: -50px;
   height: 40px;
   width: 40px;
   border: none;
-  background-image: url(../images/close-button-light.svg);
   cursor: pointer;
   margin-left: 12.5px;
   position: absolute;
-  background-repeat: no-repeat;
+  background-color: transparent;
+  background-image: url(../images/close-button-light.svg);
+  opacity: 0.4;
   background-position: center;
-  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .modal__label-avatar {
@@ -309,29 +318,48 @@
     padding: 0 10px;
   }
 
+  .modal__input {
+    font-size: 16px;
+    line-height: 16px;
+    max-width: 276px;
+  }
+
   .modal__container {
     padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 276px;
   }
   .modal__title {
     font-size: 12px;
     margin: 10px 0 34px;
     font-size: 20px;
     line-height: 1;
+    max-width: 276px;
   }
   .modal__close-btn {
     top: 12px;
     right: 12px;
   }
   .modal__label {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: start;
+    max-width: 266px;
   }
   .modal__submit-btn {
-    width: 100%;
+    max-width: 276px;
+  }
+
+  .modal__submit-btn_type_confirm {
+    width: 156px;
   }
 
   .modal__content {
-    flex-direction: column-reverse;
-    align-items: end;
+    flex-direction: column;
+    align-items: center;
     max-width: 288px;
     margin: 0 auto;
     position: relative;
@@ -347,6 +375,41 @@
     flex-direction: column;
     margin: 0 auto;
   }
+  .modal__buttons {
+    flex-direction: column;
+    gap: 12px;
+    max-width: 156px;
+  }
+  .modal__title-delete {
+    font-size: 16px;
+    margin: 10px 0 34px;
+    line-height: 1;
+    text-wrap: wrap;
+    text-align: center;
+    max-width: 276px;
+    size: 20px;
+    text-align: center;
+  }
+  .modal__close-btn_type_delete-confirmation {
+    top: -45px;
+  }
+  .modal__container {
+    max-width: 288px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal__edit_avatar-list {
+    padding: 0;
+  }
+  .modal__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 266px;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -360,5 +423,38 @@
   }
   .modal__image {
     max-width: 90vw;
+  }
+
+  .modal__container--delete-confirmation {
+    padding: 12px;
+    max-width: 288px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+
+  .modal__title-avatar {
+    font-size: 20px;
+    margin: 10px 0 34px;
+    line-height: 1;
+    text-align: center;
+    margin: 0 0 20px;
+  }
+
+  .modal__edit_avatar-list {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    list-style-type: none;
+    padding: 0 0;
+  }
+
+  .modal__submit-btn {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .modal__submit-btn_type_confirm {
+    max-width: 156px;
   }
 }

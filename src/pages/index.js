@@ -80,15 +80,13 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const newCardModal = document.querySelector("#new-card-modal");
 
 const closeButtons = document.querySelectorAll(".modal__close-btn");
-const modalCloseButtonImage = document.querySelector(
-  ".modal__close-btn--image",
-);
 
 const profileFormElement = profileEditModal.querySelector("#edit-profile");
 const newPostFormElement = newCardModal.querySelector("#new-post");
 const editModalNameInput = profileFormElement.querySelector(
   "#profile-name-input",
 );
+
 const editModalDescriptionInput = profileFormElement.querySelector(
   "#profile-description-input",
 );
@@ -100,6 +98,13 @@ const cardImageCaptionInput = newCardModal.querySelector(
 
 const pictureModal = document.querySelector("#picture-modal");
 
+const avatarEditButton = document.querySelector(".profile__image-edit-btn");
+const avatarEditModal = document.querySelector("#edit-avatar-modal");
+const avatarImageInput = avatarEditModal.querySelector("#avatar-image-input");
+const avatarSubmitButton = avatarEditModal.querySelector(
+  ".modal__submit-btn-avatar",
+);
+
 const modalContainerImage = document.querySelector(".modal__container--image");
 const modalImage = pictureModal.querySelector(".modal__image");
 const modalLabel = pictureModal.querySelector(".modal__caption");
@@ -110,7 +115,10 @@ const newPostSubmitButton = newCardModal.querySelector(".modal__submit-btn");
 const deleteModal = document.querySelector("#delete-confirmation-modal");
 const cardTemplate = document.querySelector("#card");
 const formInputList = document.querySelectorAll(".modal__input");
-
+const formSubmitButtons = document.querySelectorAll(".modal__submit-btn");
+const deleteModalSubmitButton = deleteModal.querySelector(
+  ".modal__submit-btn_type_confirm",
+);
 const modals = document.querySelectorAll(".modal");
 function getCardElement(data) {
   const cardElement = cardTemplate.content
@@ -164,6 +172,24 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function renderLoading(isLoading) {
+  formSubmitButtons.forEach((button) => {
+    if (isLoading) {
+      if (button === deleteModalSubmitButton) {
+        button.textContent = "Deleting...";
+      } else {
+        button.textContent = "Saving...";
+      }
+    } else {
+      if (button === deleteModalSubmitButton) {
+        button.textContent = "Delete";
+      } else {
+        button.textContent = "Save";
+      }
+    }
+  });
+}
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscape);
@@ -197,6 +223,12 @@ function handleProfileFormSubmit(evt) {
   evt.target.reset();
 }
 
+formSubmitButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    renderLoading(true);
+  });
+});
+
 function handleNewPostFormSubmit(evt) {
   const cardElement = api.addCard({
     name: cardImageCaptionInput.value,
@@ -208,6 +240,22 @@ function handleNewPostFormSubmit(evt) {
   disableButton(newPostSubmitButton, settings);
 }
 
+function handleAvatarFormSubmit(evt) {
+  api
+    .updateAvatar({
+      avatar: avatarImageInput.value,
+    })
+    .then((data) => {
+      profileImage.src = data.avatar;
+      profileImage.alt = data.name;
+    });
+  closeModal(avatarEditModal);
+  evt.target.reset();
+  disableButton(avatarSubmitButton, settings);
+}
+
+avatarSubmitButton.addEventListener("click", handleAvatarFormSubmit);
+
 profileEditButton.addEventListener("click", function (evt) {
   resetValidation(
     profileFormElement,
@@ -217,6 +265,7 @@ profileEditButton.addEventListener("click", function (evt) {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
+  evt.target.reset();
 });
 
 newPostButton.addEventListener("click", function (evt) {
@@ -239,12 +288,11 @@ modals.forEach((modalItem) => {
   });
 });
 
-pictureModal.addEventListener("click", (evt) => {
-  const modal = evt.target.closest(".modal");
-  if (evt.target === modal) {
-    closeModal(modal);
-  }
+avatarEditButton.addEventListener("click", () => {
+  openModal(avatarEditModal);
+  disableButton(avatarSubmitButton, settings);
 });
-
+renderLoading(false);
 pictureModal.addEventListener("keydown", handleEscape);
+deleteModal.addEventListener("keydown", handleEscape);
 enableValidation(settings);

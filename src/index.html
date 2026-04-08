@@ -103,40 +103,45 @@
       </div>
       <div id="new-card-modal" class="modal">
         <div class="modal__container">
-          <button
-            type="button"
-            class="modal__close-btn modal__close-btn_type_card"
-          ></button>
-          <h2 class="modal__title">New Post</h2>
-          <form name="new-post" id="new-post" class="modal__form" novalidate>
-            <label for="card-image-input" class="modal__label"
-              >Image link
-              <input
-                required
-                placeholder="Paste a link to the picture"
-                id="card-image-input"
-                type="url"
-                class="modal__input"
-              />
-              <span id="card-image-input-error" class="modal__error"></span>
-            </label>
-            <label for="image-caption-input" class="modal__label">
-              Caption
-              <input
-                required
-                placeholder="Type your caption"
-                id="image-caption-input"
-                type="text"
-                class="modal__input"
-                minlength="2"
-                maxlength="30"
-              />
-              <span id="image-caption-input-error" class="modal__error"></span>
-            </label>
-            <button type="submit" class="modal__submit-btn" disabled>
-              Save
-            </button>
-          </form>
+          <div class="modal__content">
+            <button
+              type="button"
+              class="modal__close-btn modal__close-btn_type_card"
+            ></button>
+            <h2 class="modal__title">New Post</h2>
+            <form name="new-post" id="new-post" class="modal__form" novalidate>
+              <label for="card-image-input" class="modal__label"
+                >Image link
+                <input
+                  required
+                  placeholder="Paste a link to the picture"
+                  id="card-image-input"
+                  type="url"
+                  class="modal__input"
+                />
+                <span id="card-image-input-error" class="modal__error"></span>
+              </label>
+              <label for="image-caption-input" class="modal__label">
+                Caption
+                <input
+                  required
+                  placeholder="Type your caption"
+                  id="image-caption-input"
+                  type="text"
+                  class="modal__input"
+                  minlength="2"
+                  maxlength="30"
+                />
+                <span
+                  id="image-caption-input-error"
+                  class="modal__error"
+                ></span>
+              </label>
+              <button type="submit" class="modal__submit-btn" disabled>
+                Save
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div id="picture-modal" class="modal">
@@ -179,37 +184,52 @@
       </div>
       <div class="modal" id="edit-avatar-modal">
         <div class="modal__container modal__container--edit-avatar">
-          <ul class="profile__edit_avatar-list">
-            <li class="profile___edit_avatar-item">
-              <button
-                type="button"
-                class="modal__close-btn modal__close-btn_type_avatar"
-              ></button>
-              <h2 class="modal__title modal__title-avatar">
-                Edit profile avatar
-              </h2>
-            </li>
-            <li class="profile__edit_avatar-item">
-              <label
-                for="avatar-image-input"
-                class="modal__label modal__label-avatar"
-                >Profile picture
-                <input
-                  required
-                  placeholder="Paste the link to an image"
-                  id="avatar-image-input"
-                  type="url"
-                  class="modal__input"
-                />
-                <span id="avatar-image-input-error" class="modal__error"></span>
-              </label>
-            </li>
-            <li class="profile__edit_avatar-item">
-              <button type="submit" class="modal__submit-btn" disabled>
-                Save
-              </button>
-            </li>
-          </ul>
+          <div class="modal__content">
+            <ul class="modal__edit_avatar-list">
+              <li class="modal___edit_avatar-item">
+                <button
+                  type="button"
+                  class="modal__close-btn modal__close-btn_type_avatar"
+                ></button>
+                <h2 class="modal__title modal__title-avatar">
+                  Edit profile avatar
+                </h2>
+              </li>
+              <form
+                name="edit-avatar"
+                id="edit-avatar"
+                class="modal__form"
+                novalidate
+              >
+                <li class="modal__edit_avatar-item">
+                  <label
+                    for="avatar-image-input"
+                    class="modal__label modal__label-avatar"
+                    >Profile picture
+                    <input
+                      required
+                      placeholder="Paste the link to an image"
+                      id="avatar-image-input"
+                      type="url"
+                      class="modal__input"
+                    />
+                    <span
+                      id="avatar-image-input-error"
+                      class="modal__error"
+                    ></span>
+                  </label>
+                </li>
+                <li class="modal__edit_avatar-item">
+                  <button
+                    type="submit"
+                    class="modal__submit-btn modal__submit-btn-avatar"
+                  >
+                    Save
+                  </button>
+                </li>
+              </form>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
