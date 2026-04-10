@@ -220,7 +220,6 @@ function handleProfileFormSubmit(evt) {
     });
   closeModal(profileEditModal);
   disableButton(profileSubmitButton, settings);
-  evt.target.reset();
 }
 
 formSubmitButtons.forEach((button) => {
@@ -230,17 +229,18 @@ formSubmitButtons.forEach((button) => {
 });
 
 function handleNewPostFormSubmit(evt) {
+  evt.preventDefault();
   const cardElement = api.addCard({
     name: cardImageCaptionInput.value,
     link: cardImageInput.value,
   });
   cardsList.prepend(cardElement);
   closeModal(newCardModal);
-  evt.target.reset();
   disableButton(newPostSubmitButton, settings);
 }
 
 function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
   api
     .updateAvatar({
       avatar: avatarImageInput.value,
@@ -250,7 +250,6 @@ function handleAvatarFormSubmit(evt) {
       profileImage.alt = data.name;
     });
   closeModal(avatarEditModal);
-  evt.target.reset();
   disableButton(avatarSubmitButton, settings);
 }
 
@@ -265,7 +264,6 @@ profileEditButton.addEventListener("click", function (evt) {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
-  evt.target.reset();
 });
 
 newPostButton.addEventListener("click", function (evt) {

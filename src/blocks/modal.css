@@ -44,9 +44,6 @@
 }
 
 .modal__close-btn {
-  position: absolute;
-  top: 32px;
-  right: 50px;
   height: 40px;
   width: 40px;
   background-repeat: no-repeat;
@@ -150,8 +147,14 @@
 
 .modal__content {
   display: flex;
-  flex-direction: column;
   align-content: center;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.modal__content_type_image {
+  flex-wrap: nowrap;
 }
 
 .modal__container--image {
@@ -280,7 +283,15 @@
   display: flex;
   flex-direction: column;
   margin-top: auto;
-  list-style-type: none;
+  list-style: none;
+  position: relative;
+}
+
+.modal__edit_avatar-item_type_input {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .modal__close-btn_type_delete-confirmation {
@@ -297,6 +308,12 @@
   opacity: 0.4;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.modal__close-btn_type_profile {
+  display: flex;
+  align-self: flex-end;
+  justify-self: flex-end;
 }
 
 .modal__label-avatar {
@@ -393,6 +410,17 @@
   .modal__close-btn_type_delete-confirmation {
     top: -45px;
   }
+
+  .modal__close-btn_type_card {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .modal__close-btn_type_preview {
+    top: 0;
+    right: 0;
+    margin-top: 0;
+  }
   .modal__container {
     max-width: 288px;
     padding: 12px;
@@ -409,6 +437,12 @@
     flex-direction: column;
     align-items: center;
     max-width: 266px;
+  }
+
+  .modal__content_type_image {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
   }
 }
 

@@ -58,7 +58,10 @@
       <footer class="footer"><p class="footer__text">2024 © Spots</p></footer>
       <div id="profile-edit-modal" class="modal">
         <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_type_profile"
+          ></button>
           <h2 class="modal__title">Edit profile</h2>
           <form
             name="edit-profile"
@@ -146,7 +149,11 @@
       </div>
       <div id="picture-modal" class="modal">
         <div class="modal__container modal__container--image">
-          <div class="modal__content">
+          <div class="modal__content modal__content_type_image">
+            <button
+              type="button"
+              class="modal__close-btn modal__close-btn_type_preview"
+            ></button>
             <ul class="modal__list">
               <li class="modal__list-item">
                 <img src="#" alt="" class="modal__image" />
@@ -155,10 +162,6 @@
                 <p class="modal__caption"></p>
               </li>
             </ul>
-            <button
-              type="button"
-              class="modal__close-btn modal__close-btn_type_preview"
-            ></button>
           </div>
         </div>
       </div>
@@ -186,7 +189,9 @@
         <div class="modal__container modal__container--edit-avatar">
           <div class="modal__content">
             <ul class="modal__edit_avatar-list">
-              <li class="modal___edit_avatar-item">
+              <li
+                class="modal___edit_avatar-item modal__edit_avatar-item_type_input"
+              >
                 <button
                   type="button"
                   class="modal__close-btn modal__close-btn_type_avatar"
@@ -201,7 +206,9 @@
                 class="modal__form"
                 novalidate
               >
-                <li class="modal__edit_avatar-item">
+                <li
+                  class="modal__edit_avatar-item modal__edit_avatar-item_type_input"
+                >
                   <label
                     for="avatar-image-input"
                     class="modal__label modal__label-avatar"
