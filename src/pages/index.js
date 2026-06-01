@@ -264,6 +264,11 @@ function handleNewPostFormSubmit(evt) {
     })
     .then((res) => {
       if (card._checkRes(res)) {
+        cardElement.name = cardImageCaptionInput.value;
+        cardElement.link = cardImageInput.value;
+        cardElement._isLiked = false;
+        cardElement._likes = 0;
+        cardElement.alt = cardImageCaptionInput.value;
         cardsList.prepend(cardElement);
         closeModal(newCardModal);
         disableButton(newPostSubmitButton, settings);
