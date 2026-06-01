@@ -136,9 +136,13 @@ function getCardElement(data) {
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__btn_active");
     if (cardLikeButton.classList.contains("card__btn_active")) {
-      api.likeCard({ card: data });
-    } else {
-      api.dislikeCard({ card: data });
+      api.likeCard({ card: data }).then((res) => {
+        if (!card._isLiked && card._likes >= 0 && card._checkRes(res)) {
+          card._isLiked = true;
+          card._likes++;
+          return;
+        }
+      });
     }
   });
 
@@ -154,22 +158,31 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
 
   cardDeleteButton.addEventListener("click", (evt) => {
-    if (evt) {
-      evt.preventDefault();
+    if (evt === deleteBtn) {
       openModal(deleteModal);
-      deleteModal.addEventListener("click", (evt) => {
-        if (evt.target === deleteBtn) {
-          cardDeleteButton.closest(".card").remove();
-          api.deleteCard({ card: data }).catch(console.error);
-        }
+      evt.preventDefault();
+    }
+
+    deleteModal.addEventListener("click", (evt) => {
+      if (evt.target === deleteModalSubmitButton) {
+        api
+          .deleteCard({ card: data })
+          .then((res) => {
+            if (card._checkRes(res)) {
+              cardDeleteButton.closest(".card").remove();
+            }
+          })
+          .catch(console.error);
         if (evt.target === cancelBtn) {
           closeModal(deleteModal);
+        } else {
+          closeModal(deleteModal);
         }
-        closeModal(deleteModal);
-      });
-    }
+      }
+    });
+
+    return cardElement;
   });
-  return cardElement;
 }
 
 function renderLoading(isLoading) {
@@ -207,6 +220,7 @@ function handleEscape(evt) {
 }
 
 function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
   api
     .updateProfile({
       name: editModalNameInput.value,

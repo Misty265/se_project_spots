@@ -69,12 +69,6 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => {
-      if (!card._isLiked) {
-        card._isLiked = true;
-        this._likes++;
-      }
-      return this._checkRes(res);
     });
   }
 
@@ -82,13 +76,6 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (this._likes > 0 && card._isLiked === true) {
-        this._likes--;
-        return;
-      }
-      card._isLiked = false;
-      return this._checkRes(res);
     });
   }
 
