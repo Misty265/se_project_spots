@@ -257,13 +257,18 @@ formSubmitButtons.forEach((button) => {
 
 function handleNewPostFormSubmit(evt) {
   evt.preventDefault();
-  const cardElement = api.addCard({
-    name: cardImageCaptionInput.value,
-    link: cardImageInput.value,
-  });
-  cardsList.prepend(cardElement);
-  closeModal(newCardModal);
-  disableButton(newPostSubmitButton, settings);
+  const cardElement = api
+    .addCard({
+      name: cardImageCaptionInput.value,
+      link: cardImageInput.value,
+    })
+    .then((res) => {
+      if (card._checkRes(res)) {
+        cardsList.prepend(cardElement);
+        closeModal(newCardModal);
+        disableButton(newPostSubmitButton, settings);
+      }
+    });
 }
 
 function handleAvatarFormSubmit(evt) {
