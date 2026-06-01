@@ -137,15 +137,26 @@ function getCardElement(data) {
     cardLikeButton.classList.toggle("card__btn_active");
     if (cardLikeButton.classList.contains("card__btn_active")) {
       api.likeCard({ card: data }).then((res) => {
-        if (!card._isLiked && card._likes >= 0 && card._checkRes(res)) {
+        if (card._checkRes(res)) {
           card._isLiked = true;
           card._likes++;
           return;
+        } else {
+          console.error(res.error);
+        }
+      });
+    } else {
+      api.dislikeCard({ card: data }).then((res) => {
+        if (card._checkRes(res) && card._isLiked && card._likes > 0) {
+          card._isLiked = false;
+          card._likes--;
+          return;
+        } else {
+          console.error(res.error);
         }
       });
     }
   });
-
   cardImage.addEventListener("click", () => {
     modalImage.src = data.link;
     modalImage.alt = data.name;
@@ -188,16 +199,18 @@ function getCardElement(data) {
 function renderLoading(isLoading) {
   formSubmitButtons.forEach((button) => {
     if (isLoading) {
-      if (button === deleteModalSubmitButton) {
+      if (button.contains("modal__submit-btn_type_confirm")) {
         button.textContent = "Deleting...";
       } else {
         button.textContent = "Saving...";
       }
     } else {
-      if (button === deleteModalSubmitButton) {
-        button.textContent = "Delete";
-      } else {
-        button.textContent = "Save";
+      {
+        if (button.contains(!"modal__submit-btn")) {
+          button.textContent = "Delete";
+        } else {
+          button.textContent = "Save";
+        }
       }
     }
   });
