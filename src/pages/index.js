@@ -174,17 +174,16 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function renderLoading(isLoading) {
+function renderLoading(
+  isLoading,
+  button,
+  text = "Save",
+  altText = "Saving...",
+) {
   if (isLoading) {
-    profileSubmitButton.textContent = "Saving...";
-    newPostSubmitButton.textContent = "Saving...";
-    avatarSubmitButton.textContent = "Saving...";
-    deleteModalSubmitButton.textContent = "Deleting...";
+    button.textContent = altText;
   } else {
-    profileSubmitButton.textContent = "Save";
-    newPostSubmitButton.textContent = "Save";
-    avatarSubmitButton.textContent = "Save";
-    deleteModalSubmitButton.textContent = "Delete";
+    button.textContent = text;
   }
 }
 
@@ -204,7 +203,7 @@ function handleEscape(evt) {
   }
 }
 
-function handleSubmit({ evt, modal, submitHandler }, form = "") {
+function handleSubmit({ evt, submitHandler }, form = "") {
   evt.preventDefault();
   submitHandler();
   if (form) {
@@ -214,7 +213,6 @@ function handleSubmit({ evt, modal, submitHandler }, form = "") {
     disableButton(modalSubmitButton, settings);
     form.reset();
   }
-  closeModal(modal);
 }
 
 function handleProfileUpdate() {
@@ -229,11 +227,15 @@ function handleProfileUpdate() {
         (profileDescription.textContent = data.about),
       ];
     })
+    .then(() => {
+      closeModal(profileEditModal);
+      renderLoading(false, profileSubmitButton);
+    })
     .catch(console.error);
 }
 
 function handleNewPost() {
-  const cardElement = api
+  api
     .addCard({
       name: newPostDescriptionInput.value,
       link: newPostImageInput.value,
@@ -242,6 +244,10 @@ function handleNewPost() {
       const card = getCardElement(res);
       cardsList.prepend(card);
       return card;
+    })
+    .then(() => {
+      closeModal(newCardModal);
+      renderLoading(false, newPostSubmitButton);
     })
     .catch(console.error);
 }
@@ -255,6 +261,10 @@ function handleAvatarForm() {
       profileImage.src = data.avatar;
       profileImage.alt = data.name;
       return;
+    })
+    .then(() => {
+      closeModal(avatarEditModal);
+      renderLoading(false, avatarSubmitButton);
     })
     .catch(console.error);
 }
@@ -283,6 +293,7 @@ modals.forEach((modalItem) => {
 });
 
 profileFormElement.addEventListener("submit", (evt) => {
+  renderLoading(true, profileSubmitButton);
   handleSubmit(
     {
       evt,
@@ -292,10 +303,12 @@ profileFormElement.addEventListener("submit", (evt) => {
       },
     },
     profileFormElement,
+    profileSubmitButton,
   );
 });
 
 avatarEditModal.addEventListener("submit", (evt) => {
+  renderLoading(true, avatarSubmitButton);
   handleSubmit(
     {
       evt,
@@ -305,10 +318,12 @@ avatarEditModal.addEventListener("submit", (evt) => {
       },
     },
     avatarEditModalFormElement,
+    avatarSubmitButton,
   );
 });
 
 newPostFormElement.addEventListener("submit", (evt) => {
+  renderLoading(true, newPostSubmitButton);
   handleSubmit(
     {
       evt,
@@ -318,6 +333,7 @@ newPostFormElement.addEventListener("submit", (evt) => {
       },
     },
     newPostFormElement,
+    newPostSubmitButton,
   );
 });
 
@@ -333,9 +349,14 @@ function handleConfirmDelete() {
       selectedCard.cardElement.remove();
       return res;
     })
+    .then(() => {
+      closeModal(deleteModal);
+      renderLoading(false, deleteModalSubmitButton, "Delete", "Deleting");
+    })
     .catch(console.error);
 }
 deleteModalSubmitButton.addEventListener("click", (evt) => {
+  renderLoading(true, deleteModalSubmitButton, "Delete", "Deleting...");
   handleSubmit({
     evt,
     modal: deleteModal,
@@ -348,6 +369,5 @@ cancelBtn.addEventListener("click", (evt) => {
   evt.preventDefault();
   closeModal(deleteModal);
 });
-renderLoading(false);
 
 enableValidation(settings);
