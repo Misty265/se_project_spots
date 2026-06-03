@@ -81,5 +81,3 @@ export const enableValidation = (config) => {
     setEventListeners(formElement, config);
   });
 };
-
-enableValidation(settings);

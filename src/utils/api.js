@@ -44,23 +44,12 @@ class Api {
     }).then((res) => this._checkRes(res));
   }
 
-  updateAvatar({ image }) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({ avatar: image }),
-    }).then((res) => this._checkRes(res));
-  }
-
   deleteCard({ card }) {
     return fetch(`${this._baseUrl}/cards/${card._id}`, {
       method: "DELETE",
       headers: this._headers,
       body: JSON.stringify({ card }),
     }).then((res) => {
-      if (card instanceof HTMLElement) {
-        return card.remove();
-      }
       return this._checkRes(res);
     });
   }
@@ -69,14 +58,14 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    });
+    }).then((res) => this._checkRes(res));
   }
 
   dislikeCard({ card }) {
     return fetch(`${this._baseUrl}/cards/${card._id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    });
+    }).then((res) => this._checkRes(res));
   }
 
   updateAvatar({ avatar }) {
