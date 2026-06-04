@@ -122,7 +122,7 @@
 }
 
 .modal__submit-btn {
-  max-width: 156px;
+  width: 156px;
   padding: 18px 0;
   color: #fcf5e5;
   background-color: #212121;
