@@ -151,26 +151,28 @@ function getCardElement(data) {
 
   cardLikeButton.addEventListener("click", (evt) => {
     if (!data._isLiked) {
-      api.likeCard({ card: data }).then((res) => {
-        data._isLiked = true;
-        data._likes++;
-        cardLikeButton.classList.toggle("card__btn_active");
-        return res;
-      });
+      api
+        .likeCard({ card: data })
+        .then((res) => {
+          data._isLiked = true;
+          data._likes++;
+          cardLikeButton.classList.add("card__btn_active");
+          return res;
+        })
+        .catch(console.error);
     } else {
-      if (data._likes > 0) {
-        api
-          .dislikeCard({ card: data })
-          .then((res) => {
-            data._isLiked = false;
-            data._likes--;
-            cardLikeButton.classList.toggle("card__btn_active");
-            return res;
-          })
-          .catch(console.error);
-      }
+      api
+        .dislikeCard({ card: data })
+        .then((res) => {
+          data._isLiked = false;
+          data._likes--;
+          cardLikeButton.classList.remove("card__btn_active");
+          return res;
+        })
+        .catch(console.error);
     }
   });
+
   return cardElement;
 }
 
@@ -239,6 +241,7 @@ function handleNewPost() {
     .addCard({
       name: newPostDescriptionInput.value,
       link: newPostImageInput.value,
+      _isLiked: false,
     })
     .then((res) => {
       const card = getCardElement(res);

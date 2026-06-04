@@ -182,7 +182,7 @@
   flex-wrap: nowrap;
 }
 
-@media screen and (max-width: 627px) {
+@media screen and (max-width: 670px) {
   .profile {
     flex-direction: column;
     flex-wrap: wrap;
