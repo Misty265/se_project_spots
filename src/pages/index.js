@@ -145,17 +145,16 @@ function getCardElement(data) {
     modalLabel.textContent = data.name;
     openModal(pictureModal);
   });
+
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
 
-  cardLikeButton.addEventListener("click", (evt) => {
-    if (!data._isLiked) {
+  cardLikeButton.addEventListener("click", () => {
+    if (!cardLikeButton.classList.contains("card__btn_active")) {
       api
         .likeCard({ card: data })
         .then((res) => {
-          data._isLiked = true;
-          data._likes++;
           cardLikeButton.classList.add("card__btn_active");
           return res;
         })
@@ -164,15 +163,12 @@ function getCardElement(data) {
       api
         .dislikeCard({ card: data })
         .then((res) => {
-          data._isLiked = false;
-          data._likes--;
           cardLikeButton.classList.remove("card__btn_active");
           return res;
         })
         .catch(console.error);
     }
   });
-
   return cardElement;
 }
 
@@ -224,13 +220,11 @@ function handleProfileUpdate() {
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
-      return [
-        (profileName.textContent = data.name),
-        (profileDescription.textContent = data.about),
-      ];
-    })
-    .then(() => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
       closeModal(profileEditModal);
+    })
+    .finally(() => {
       renderLoading(false, profileSubmitButton);
     })
     .catch(console.error);
@@ -246,10 +240,10 @@ function handleNewPost() {
     .then((res) => {
       const card = getCardElement(res);
       cardsList.prepend(card);
+      closeModal(newCardModal);
       return card;
     })
-    .then(() => {
-      closeModal(newCardModal);
+    .finally(() => {
       renderLoading(false, newPostSubmitButton);
     })
     .catch(console.error);
@@ -263,10 +257,10 @@ function handleAvatarForm() {
     .then((data) => {
       profileImage.src = data.avatar;
       profileImage.alt = data.name;
+      closeModal(avatarEditModal);
       return;
     })
-    .then(() => {
-      closeModal(avatarEditModal);
+    .finally(() => {
       renderLoading(false, avatarSubmitButton);
     })
     .catch(console.error);
@@ -350,10 +344,10 @@ function handleConfirmDelete() {
     .deleteCard({ card: selectedCard.data })
     .then((res) => {
       selectedCard.cardElement.remove();
+      closeModal(deleteModal);
       return res;
     })
-    .then(() => {
-      closeModal(deleteModal);
+    .finally(() => {
       renderLoading(false, deleteModalSubmitButton, "Delete", "Deleting");
     })
     .catch(console.error);
