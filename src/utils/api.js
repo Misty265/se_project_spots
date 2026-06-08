@@ -76,4 +76,46 @@ class Api {
   }
 }
 
+export function renderLoading(
+  isLoading,
+  button,
+  buttonText = "Save",
+  loadingText = "Saving...",
+) {
+  if (isLoading) {
+    button.textContent = loadingText;
+  } else {
+    button.textContent = buttonText;
+  }
+}
+
+export function handleSubmit(request, evt) {
+  evt.preventDefault();
+  if (evt.type === "submit") {
+    const submitButton = evt.target.querySelector(".modal__submit-btn");
+    const initialText = "Save";
+    const loadingText = "Saving...";
+    renderLoading(true, submitButton, initialText, loadingText);
+    request()
+      .then(() => {
+        evt.target.reset();
+      })
+      .catch(console.error)
+      .finally(() => {
+        renderLoading(false, submitButton, initialText, loadingText);
+      });
+  }
+  if (evt.type === "click") {
+    const submitButton = evt.target;
+    const initialText = "Delete";
+    const loadingText = "Deleting";
+    renderLoading(true, submitButton, initialText, loadingText);
+    request()
+      .catch(console.error)
+      .finally(() => {
+        renderLoading(false, submitButton, initialText, loadingText);
+      });
+  }
+}
+
 export default Api;
