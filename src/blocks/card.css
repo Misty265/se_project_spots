@@ -8,6 +8,7 @@
   height: 413px;
   border-radius: 8px;
   display: block;
+  object-fit: cover;
 }
 
 .card__image:hover {
@@ -37,6 +38,7 @@
 .card__btn:hover {
   opacity: 1;
   cursor: pointer;
+  transition: 0.5s ease-in 0.3s;
 }
 
 .card__btn {
@@ -51,6 +53,7 @@
 
 .card__btn_active:hover {
   opacity: 0.5;
+  transition: 0.5s ease-in 0.3s;
 }
 
 .card__btn_active {
@@ -73,6 +76,7 @@
 .card__btn-delete:hover {
   background-image: url(../images/trash-bin-hover.svg);
   cursor: pointer;
+  transition: 0.5s ease-in 0.3s;
 }
 
 @media screen and (max-width: 627px) {
@@ -88,8 +92,5 @@
   .card__image {
     max-width: 90vw;
     height: 288px;
-  }
-  .card__content {
-    max-width: 288px;
   }
 }

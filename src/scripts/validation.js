@@ -38,7 +38,7 @@ const hasInvalidInput = (formInputList) => {
   return formInputList.some((input) => !input.validity.valid);
 };
 
-const disableButton = (buttonElement, config) => {
+export const disableButton = (buttonElement, config) => {
   buttonElement.disabled = true;
   buttonElement.classList.add(config.inactiveButtonClass);
 };
@@ -81,5 +81,3 @@ export const enableValidation = (config) => {
     setEventListeners(formElement, config);
   });
 };
-
-enableValidation(settings);

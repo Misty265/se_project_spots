@@ -1,10 +1,9 @@
 .profile {
   display: flex;
-  align-content: center;
-  justify-content: center;
   border-bottom: 1px solid rgba(33, 33, 33, 0.4);
   padding: 34px 0 20px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .profile__image {
@@ -12,6 +11,57 @@
   height: 190px;
   margin: 0 20px 0 0;
   border-radius: 8px;
+  z-index: 0;
+  display: inline;
+  object-fit: cover;
+}
+
+.profile__image-overlay {
+  display: flex;
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 8px;
+  z-index: 1;
+  background-color: rgba(33, 33, 33, 0);
+}
+
+.profile__image-edit-btn {
+  display: flex;
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 8px;
+  z-index: 2;
+  background-color: rgba(33, 33, 33, 0);
+  opacity: 0;
+  color: #fcf5e5;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  border: none;
+  margin-right: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.profile__image-edit-btn:hover {
+  cursor: pointer;
+  background-color: rgba(33, 33, 33, 0.8);
+  opacity: 0.8;
+  transition: 0.5s ease-in 0.3s;
+}
+
+.profile__image-edit-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background-color: transparent;
 }
 
 .profile__column {
@@ -19,6 +69,7 @@
   flex-direction: column;
   justify-content: center;
   max-width: 420px;
+  min-height: stretch;
 }
 
 .profile__name {
@@ -36,6 +87,7 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
 }
@@ -51,9 +103,9 @@
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   text-overflow: ellipsis;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
 }
@@ -131,13 +183,12 @@
   flex-wrap: nowrap;
 }
 
-@media screen and (max-width: 627px) {
+@media screen and (max-width: 670px) {
   .profile {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
-    justify-content: center;
     padding: 20px 16px;
   }
   .profile__name {
@@ -164,7 +215,19 @@
     margin: auto;
   }
   .profile__add-btn {
-    min-width: 288px;
+    max-width: 288px;
+    margin: 0 auto;
+  }
+  .profile__image-overlay {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .profile__image-edit-btn {
+    width: 80px;
+    height: 80px;
     margin: 0 auto;
   }
 }
